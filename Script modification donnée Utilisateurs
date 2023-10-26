@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>modification</title>
+		<link rel="stylesheet" href="../Style/Smodif.css" />
+	</head>
+	<body>
+	
+	<div align="center">
+	<h1> Formulaire de modification</h1>
+	
+		
+		
+		<?php
+	
+		include 'ConnexionBDD.php';
+		
+		
+		session_start();
+		
+		if(isset($_SESSION['pseudo'])){
+		
+		if (isset($_POST['ID2'])) 
+		{
+			$ID2 = $_POST['ID2'];
+			$NOM = $_POST['NOM'];
+			$PRENOM = $_POST['PRENOM'];
+			$DATENAIS = $_POST['DATENAIS'];
+			$VILLE = $_POST['VILLE'];
+			$PSEUDO = $_POST['PSEUDO'];
+			
+			$req = "UPDATE abonnes SET NOM='$NOM', PRENOM='$PRENOM', DATENAIS='$DATENAIS', VILLE='$VILLE', PSEUDO='$PSEUDO' WHERE ID=$ID2;";
+		
+		if($reponse = $bdd->query($req))
+			{
+				print_r("Modification réussite");
+			}
+		}
+		else 
+		
+		if (isset($_POST['ID']))
+		{
+			
+			$req="SELECT * FROM abonnes WHERE ID =".$_POST['ID'];	
+			$reponse = $bdd->query ($req);	
+			$tranche=$reponse->fetch ();
+		?>
+		
+		<form method="post">
+			<table>
+			
+					<th><td>NOM</td><td><input type="text" name="NOM" value=" <?php echo $tranche['NOM'] ?>" required/></td></tr>
+					<th><td>PRENOM</td><td><input type="text" name="PRENOM"value=" <?php echo $tranche['PRENOM'] ?>"required/></tr>
+					<th><td>Date de naissance</td><td><input type="date" name="DATENAIS" value=" <?php echo $tranche['DATENAIS'] ?>"required/></td></tr>
+					<th><td>Ville</td><td><input type="text" name="VILLE" value=" <?php echo $tranche['VILLE'] ?>"required/></td></tr>
+					<th><td>Pseudo</td><td><input type="text" name="PSEUDO" value=" <?php echo $tranche['PSEUDO'] ?>"required/></td></tr>
+					<th><td>Mot de passe</td><td><input type="password" name="MDP" value=" <?php echo $tranche['MDP'] ?>"required/></td></tr>
+						
+			</table>
+			<input type = "hidden" name = "ID2" value="<?php echo $tranche['ID'] ?>"/>
+			<input type = "submit"  methode = "POST" value = "Envoyer"/>
+		</form>
+			
+	<?php
+		}
+		else{	
+			$req="SELECT * FROM abonnes";
+			$reponse = $bdd->query ($req);
+	?>
+
+
+	<form method="post">
+		<select name= "ID" required>	 
+		
+		<?php
+		while ($tranche=$reponse->fetch () )
+			
+		echo "<option value=\"".$tranche['ID']."\">".$tranche['PRENOM']." ".$tranche['NOM']." ne le ". $tranche['DATENAIS']. " habite a ".$tranche['VILLE']." pseudo : ".$tranche['PSEUDO']."</option>";
+		?>
+
+		</select>
+		
+		<input type="submit" value="OK" /><br>
+	</form>
+	
+	<?php
+	}
+	}
+	else {
+		 
+	echo "Vous n'êtes pas connecté. Connectez vous pour  voir cette page.";}
+	?>
+	
+	<form 
+		action="MENU.php" method="post">
+		<p>
+			<input type="submit" value="Retour"/>
+		</p>
+	</form>
+			
+	
+	</body>
+</html>
