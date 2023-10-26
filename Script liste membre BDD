@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>Lecture Bdd Simple !</title>
+		<link rel="stylesheet" href="../Style/S7.css" />
+	</head>
+<body>
+	<div align="center">
+	<h1>Contenu de la table Abonnes de la Bdd jeremylouis</h1>
+	
+	<?php
+		//Connection au serveur de données
+
+		include 'ConnexionBDD.php';
+	
+		//Extraction de données
+		//Sélection et extraction sur 1 ligne de code
+
+
+		$query = 'SELECT * FROM abonnes ORDER BY Nom ASC;';
+		$reponse = $bdd->query($query);
+
+		//Session
+
+		session_start();
+		
+		if(isset($_SESSION['pseudo'])){
+			
+		//Décomposition en enregistrement
+		
+		echo "<table>";
+		echo "<tr><th>ID</th><th>NOM</th><th>PRENOM</th><th>DATENAIS</th><th>VILLE</th><th>PSEUDO</th></tr>";
+		
+		while ($tranche=$reponse->fetch()) {
+			echo "<tr><td>".$tranche['ID']."</td><td>".$tranche['NOM']."</td><td>".$tranche['PRENOM']."</td><td>".$tranche['DATENAIS']."</td><td>".$tranche['VILLE']."</td><td>".$tranche['PSEUDO']."</td></tr>";
+		};
+		
+		echo "</table>";
+
+		//Fermeture de la connexion
+
+		$reponse->closecursor();
+			
+		}
+		else
+		{
+		echo "Vous n'êtes pas connecté. Connectez vous pour  voir cette page.";}
+	?>
+	
+	<form action="MENU.php" methode="post">
+		<p>
+		<input type="submit" value="Retour"/>
+		</p>
+		</form>
+		
+	</body>
+</html>
