@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>Deconnexion Session</title>
+		<link rel="stylesheet" href="Style/Sinscri.css" />
+	</head>
+	<body>
+	<div align="center">
+	
+<?php
+	session_start();
+
+
+if (isset($_SESSION['pseudo'])){
+			$pseudo = $_SESSION['pseudo'];
+			
+			unset ($_SESSION['pseudo']);
+			session_destroy();
+			
+			if ( isset ($_SESSION['pseudo'])) {
+				$resultat = "La suppression a échouée ."; }
+				
+			else {
+			echo "<p> Au revoir ".$pseudo." Vous êtes déconnecté </p>";
+			echo "<p>Revenez au <a href='MENU.php'>menu principale</a>.<br>";}
+				}
+			
+
+
+
+			
+		?>
+		<br>
+		<p>Cliquez pour revenir au <a href="MENU.php">menu principale</a>.<br>
+	</body>
+</html>
