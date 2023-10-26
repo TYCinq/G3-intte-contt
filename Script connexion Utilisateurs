@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>Inscription</title>
+		<link rel="stylesheet" href="Style/Sinscri.css" />
+	</head>
+<body>
+	<div align="center">
+	<h1>Inscription</h1>
+	
+	<?php
+//Connection au serveur de données
+
+	if (isset($_POST['NOM']))
+	{
+		//print_r($_POST);
+		$N =$_POST['NOM'];
+		$P =$_POST['PRENOM'];
+		$D =$_POST['DATENAIS'];
+		$V =$_POST['VILLE'];
+		$Ps =$_POST['PSEUDO'];
+		$Pa =$_POST['MDP'];
+		
+	include 'ConnexionBDD.php';
+
+	$req = "INSERT INTO abonnes VALUES ('',\"".$N."\",\"".$P."\",\"".$D."\",\"".$V."\",\"".$Ps."\",\"".$Pa."\")";
+
+	
+		if ($reponse = $bdd->query($req) )
+		{
+		echo "Inscription enregsitée !<br>";
+		}
+	$req = "INSERT INTO abonnes VALUES ('', liste des valeurs)";
+	}
+	else{
+	?>
+		
+		<form method="post">
+			<table id="formul">
+				<a href="Inscription.php";
+					<tr><td>NOM</td><td><input type="text" name="NOM" required/></td></tr>
+					<tr><td>PRENOM</td><td><input type="text" name="PRENOM" required/></tr>
+					<tr><td>Date de naissance</td><td><input type="date" name="DATENAIS" required/></td></tr>
+					<tr><td>Ville</td><td><input type="text" name="VILLE" required/></td></tr>
+					<tr><td>Pseudo</td><td><input type="text" name="PSEUDO" required/></td></tr>
+					<tr><td>Mot de passe</td><td><input type="password" name="MDP" required/></td></tr>
+					<tr><td>Confirmation MDP</td><td><input type="password" name="confirmMDP" required/></td></tr>
+					
+			</table>
+		</form>
+			
+				<input type="submit" value="Envoyer" />
+		
+	<?php
+	}
+	?>
+	
+	<form action="MENU.php" methode="post">
+		<p>
+		<input type="submit" value="Retour"/>
+		</p>
+		</form>
+	
+	</body>
+</html>
