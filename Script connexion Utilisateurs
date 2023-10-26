@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>Connexion Session</title>
+		<link rel="stylesheet" href="Style/Sinscri.css" />
+	</head>
+	<body>
+	<div align="center">
+	<h1>Connexion</h1>
+	
+	
+
+	<?php
+		include 'ConnexionBDD.php';
+					
+		$query = "SELECT * FROM abonnes";
+		$reponse = $bdd->query($query);
+			
+			if(isset($_POST['mdp']) AND isset($_POST['pseudo']))
+			{ 
+								
+				$query = "SELECT * FROM abonnes WHERE PSEUDO=\"".$_POST['pseudo']."\" AND MDP=\"".$_POST['mdp']."\"";
+				$reponse = $bdd->query($query);
+				$tranche=$reponse->fetch();
+				$test = $_POST['pseudo']." ".$_POST['mdp'];
+				$verif = $tranche['PSEUDO']." ".$tranche['MDP'];
+
+							
+				if($test == $verif)
+				{
+					echo "Connexion réussie<br>";
+					echo "Vous êtes connecté en tant que ".$_POST['pseudo'].". Revenez au <a href='MENU.php' class='Connexion'/>menu principale.</a> ";
+					$_SESSION['pseudo'] = $_POST['pseudo'];
+				}
+				else
+					echo "<br>L'identifiant n'existe pas ou le mot de passe est incorrecte.";
+			}
+			
+			else
+			{	
+				?>
+		
+		 
+		<form method="POST" action="page1.php">
+		<p>Entrez votre nom : <input type="TEXT" name="pseudo">
+
+		<p>Entrez votre mot de passe : <input type = "password" name = "mdp" /></p>
+				
+		<p><input type="SUBMIT" value="OK"></p>
+		</form>
+		
+		<?php
+			}
+		?>
+		
+	</body>
+</html>
