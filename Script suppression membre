@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta cherset="utf-8"/>
+		<title>Suppression</title>
+		<link rel="stylesheet" href="../Style/Smodif.css" />
+	</head>
+	<body>	
+	
+	<div align="center">
+	<h1> Formulaire de suppression</h1>
+	
+	
+		<?php
+	
+			include 'ConnexionBDD.php';
+		
+		session_start();
+		
+		if(isset($_SESSION['pseudo'])){
+		
+			if (isset($_POST['ID3']))
+			{
+				
+				$ID3 = $_POST['ID3'];
+				
+				$req = "DELETE * FROM abonnes WHERE ID=".$_POST['ID3'];
+				$reponse = $bdd->query($req);
+				print_r($reponse);
+				echo "SA MARSH";			
+			};
+		
+		if (isset($_POST['ID']))
+		{			
+			$req="SELECT * FROM abonnes WHERE ID =".$_POST['ID'];	
+			$reponse = $bdd->query ($req);	
+			$tranche=$reponse->fetch ();				
+		}
+		
+		else
+		{	
+			$req="SELECT * FROM abonnes";
+			$reponse = $bdd->query ($req);
+		?>
+		
+	<form method="post">
+		<select name= "ID" required>	 
+		
+		<?php
+		
+			while ($tranche=$reponse->fetch () )				
+			echo "<option value=\"".$tranche['ID']."\">".$tranche['PRENOM']." ".$tranche['NOM']." né le ". $tranche['DATENAIS']. " habite a ".$tranche['VILLE']." pseudo : ".$tranche['PSEUDO']."</option>";
+		
+		?>
+
+		</select>
+		
+			<input type = "hidden" name = "ID3" value="<?php echo $tranche['ID'] ?>"/>
+			<input type = "submit"  methode = "post" value = "Supprimer"/>
+			
+	</form>
+	
+	<?php
+	}
+	}
+	else
+	{ 
+		echo "Vous n'êtes pas connecté. Connectez vous pour  voir cette page.";	}
+	?>	
+	
+	<form 
+		action="MENU.php" method="post">
+		<p> <input type="submit" value="Retour"/> </p>
+	</form>
+		
+		
+		
+		
+	</body>
+</html>	
