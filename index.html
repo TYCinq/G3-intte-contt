@@ -14,28 +14,35 @@
                 <li><a href="produits.html">Produits</a></li>
                 <li><a href="panier.html">Panier</a></li>
                 <li><a href="authentification.html">Connexion</a></li>
+                <li><a href="créer un compte.html">Compte</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h2>Nos Produits Populaires</h2>
-        <div class="product">
-          <img src="images/Corsair.png" alt="Corsair K95">
+        <div class="product" onclick="addToCart('Corsair K95', '29.99', 'images/Corsair.png')">
+            <img src="images/Corsair.png" alt="Corsair K95">
             <h3>Corsair K95</h3>
             <p>il fais une putain de lumière</p>
             <p>Prix : 29,99 €</p>
-            <button>Ajouter au Panier</button>
         </div>
-        <div class="product">
-          <img src="images/raw.png" alt="Cooler master SK621">
+        <div class="product" onclick="addToCart('Cooler master SK621', '39.99', 'images/raw.png')">
+            <img src="images/raw.png" alt="Cooler master SK621">
             <h3>Cooler master SK621</h3>
             <p>il fais de la turbo lumière</p>
             <p>Prix : 39,99 €</p>
-            <button>Ajouter au Panier</button>
         </div>
     </main>
     <footer>
         <p>&copy; 2023 Ma Boutique en Ligne</p>
     </footer>
+    <script>
+        function addToCart(productName, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price, image: image });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Produit ajouté au panier !');
+        }
+    </script>
 </body>
 </html>
