@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Authentification - Ma Boutique en Ligne</title>
+    <title>Créer un Compte - Ma Boutique en Ligne</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -16,18 +15,25 @@
                 <li><a href="authentification.html">Connexion</a></li>
               <li><a href="créer un compte.html">Compte</a></li>
             </ul>
+            </ul>
         </nav>
     </header>
     <main>
-        <h2>Connexion</h2>
+      <input type="text" id="searchInput" placeholder="Rechercher un produit..." oninput="searchProducts()" />
+
+    
+        <h2>Créer un Compte</h2>
         <form>
-            <label for="username">Nom d'utilisateur :</label>
-            <input type="text" id="username" name="username" required>
+            <label for="fullname">Nom d'utilisateur</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="email">Adresse E-mail :</label>
+            <input type="email" id="email" name="email" required>
 
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Se Connecter</button>
+            <button type="submit">Créer un Compte</button>
         </form>
     </main>
     <footer>

@@ -7,42 +7,69 @@
 </head>
 <body>
     <header>
-        <h1>Ma Boutique en Ligne</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="produits.html">Produits</a></li>
-                <li><a href="panier.html">Panier</a></li>
+      <header>
+          <h1>Ma Boutique en Ligne</h1>
+          <nav>
+              <ul>
+                  <li><a href="index.html">Accueil</a></li>
+                  <li><a href="produits.html">Produits</a></li>
+                  <li><a href="panier.html">Panier</a></li>
                 <li><a href="authentification.html">Connexion</a></li>
-            </ul>
-        </nav>
+                <li><a href="créer un compte.html">Compte</a></li>
+              </ul>
+          </nav>
+      </header>
     </header>
     <main>
         <h2>Nos Produits</h2>
-      <div class="product">
-        <img src="images/Corsair.png" alt="Corsair K95">
-          <h3>Corsair K95</h3>
-          <p>il fais une putain de lumière</p>
-          <p>Prix : 29,99 €</p>
-          <button>Ajouter au Panier</button>
-      </div>
-      <div class="product">
-        <img src="images/raw.png" alt="Cooler master SK621">
-          <h3>Cooler master SK621</h3>
-          <p>il fais de la turbo lumière</p>
-          <p>Prix : 39,99 €</p>
-          <button>Ajouter au Panier</button>
+
+        <input type="text" id="searchInput" placeholder="Rechercher un produit..." />
+        <button onclick="searchProducts()">Rechercher</button>
+
+        <div id="searchResults">
+            <!-- Les résultats de la recherche seront affichés ici -->
         </div>
-        <div class="product">
-          <img src="images/Azus_Rogue_Strix_Scope_RX.jpg" alt="Azus Rogue Strix Scope RX">
-            <h3>Azus Rogue Zebi Scope RX</h3>
-            <p>lumière de fou furieux</p>
-            <p>Prix : 19,99 €</p>
-            <button>Ajouter au Panier</button>
-        </div>
+
+        <script>
+            function addToCart(productName, price, image) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name: productName, price: price, image: image });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Produit ajouté au panier !');
+            }
+        </script>
+
+        <form>
+            <div class="product" onclick="addToCart('Corsair K95', '29.99', 'images/Corsair.png')">
+                <img src="images/Corsair.png" alt="Corsair K95">
+                <h3>Corsair K95</h3>
+                <p>il fais une putain de lumière</p>
+                <p>Prix : 29,99 €</p>
+            </div>
+        </form>
+
+        <!-- Ajoutez d'autres produits ici -->
+        <form>
+            <div class="product" onclick="addToCart('Azus Rogue', '1.00', 'images/Azus_Rogue_Strix_Scope_RX.png')">
+                <img src="images/Azus_Rogue_Strix_Scope_RX.png" alt="Azus Rogue">
+                <h3>Azus Rogue</h3>
+                <p>téma comment ça brille</p>
+                <p>Prix : 1.00 €</p>
+            </div>
+        </form>
+
+        <form>
+            <div class="product" onclick="addToCart('Cooler Master CK352', '99.99', 'images/ck352-noir_62cd610591661_1200.png')">
+                <img src="images/ck352-noir_62cd610591661_1200.png" alt="Cooler Master CK352">
+                <h3>Cooler Master CK352</h3>
+                <p>pour les plus dark sasuke d'entre nous</p>
+                <p>Prix : 99,99 €</p>
+            </div>
+        </form>
+
     </main>
     <footer>
-        <p>&copy; 2023 Ma Boutique en Ligne</p>
+        <!-- Votre pied de page -->
     </footer>
 </body>
 </html>
