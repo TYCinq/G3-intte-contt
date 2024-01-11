@@ -7,40 +7,62 @@
 </head>
 <body>
     <header>
-        <h1>Panier</h1>
+        <h1>Ma Boutique en Ligne</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="produits.html">Produits</a></li>
                 <li><a href="panier.html">Panier</a></li>
                 <li><a href="authentification.html">Connexion</a></li>
+                <li><a href="créer un compte.html">Compte</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h2>Votre Panier</h2>
-        <table>
-            <tr>
-                <th>Produit</th>
-                <th>Prix unitaire</th>
-                <th>Quantité</th>
-                <th>Prix total</th>
-                <th>Supprimer</th>
-            </tr>
-            <tr>
-                <td>Corsair K95</td>
-                <td>29,99 €</td>
-                <td>2</td>
-                <td>59,98 €</td>
-                <td><button>Supprimer</button></td>
-            </tr>
-            <!-- Ajoutez d'autres lignes pour d'autres produits dans le panier -->
-        </table>
-        <h3>Total du Panier : 59,98 €</h3>
-        <button>Passer la Commande</button>
+        <div id="cartItems">
+            <!-- Les produits du panier seront affichés ici -->
+        </div>
+        <h3>Total du Panier : <!-- Calculer le total du panier en JavaScript --></h3>
+        <button onclick="clearCart()">Vider le Panier</button>
     </main>
     <footer>
-        <p>&copy; 2023 Ma Boutique en Ligne</p>
+        <!-- Votre pied de page -->
     </footer>
+    <script>
+        window.onload = function() {
+            displayCart();
+        };
+
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+
+            cart.forEach(function(item) {
+                let productDiv = document.createElement('div');
+                productDiv.className = 'productInCart';
+                productDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <p>${item.name}</p>
+                    <p>${item.price} €</p>
+                    <button onclick="removeFromCart('${item.name}')">Supprimer</button>
+                `;
+                cartItems.appendChild(productDiv);
+            });
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            displayCart();
+        }
+
+        function removeFromCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== productName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    </script>
 </body>
 </html>
