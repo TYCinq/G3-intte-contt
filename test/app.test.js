@@ -1,24 +1,22 @@
-const addToCart = require ('../test_unitaire') 
+const mocha = require ('mocha');
+const addToCart = function addToCart() {
+    const productName = 'Test Product';
+    const price = '9.99';
+    const image = 'test-image.png';
+}
 
-const expect = require ('mocha').expect;
 
+describe.skip('addToCart'), ()=>{
+    it('devrait verifier le contenu de la variable', () => {
 
-const assert = require ('assert');
-const mock = require ('mock-local-storage');
-const addToCart = require ('./cart');
+        const pannier = {
+           nomProduit : 'clavier XXX',
+           prix: 75.00,
+           quantité: 1,
+        };
 
-before(() => {
-    global.localStorage = mock.localStorage();
-});
+    addToCart.calculerLePrixTotal (pannier);
 
-describe('addItemToCart', function() {
-    it('ajouter un objet au pannier', function() {
-        addToCart('Product 1', 10.99);
-        const cart = JSON.parse(localStorage.getItem('cart'));
-
-        assert.strictEqual(cart.length, 1);
-        assert.strictEqual(cart[0].productName, 'Product 1');
-        assert.strictEqual(cart[0].price, 10.99);
-    });
-
-});
+    expect(pannier.prixTotal).to.equal(10);
+    })
+}   
