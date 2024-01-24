@@ -5,7 +5,7 @@
 | LOUIS Jérémy | mainteneur, développeur |
 | BARBIER Thierry | Propriétaire, Mainteneur, Développeur |
 | LASSAL Justin | Mainteneur, Développeur |
-| HAMILCARO Thomas - Mainteneur, Développeur |
+| HAMILCARO Thomas | Mainteneur, Développeur |
 
 ## Gestion Projet
 
@@ -24,8 +24,7 @@ Nous avons aussi créer des branches temporaires dans l’optique de tester des 
 - `feature-thomas`
 
 Nous avons en parallèle mis en place Github Action pour permettre la vérification du code.
-(actuellement nous n’avons pas de code qui passe les vérifications)
 
-## Mise en place intégration continu
+## Mise en place intégration continue
 
-Avec cette mise en place, nous avons pu faire une ébauche de notre site, disponible dans la branche “ `dev` ” qui, une fois débugger pourra être merge dans “ `main` ” pour avoir notre premier livrable.
+Avec cette mise en place, nous avons pu faire une ébauche de notre site, disponible dans la branche “ `dev` ” qui, une fois débugger pourra être merge (implémentée) dans “ `main` ” pour avoir notre premier livrable.
