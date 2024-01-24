@@ -2,24 +2,24 @@
 
 | Membre du groupe | Rôle |
 | --- | --- |
-| LOUIS Jérémy | mainteneur, développeur |
+| LOUIS Jérémy | Mainteneur, Développeur |
 | BARBIER Thierry | Propriétaire, Mainteneur, Développeur |
 | LASSAL Justin | Mainteneur, Développeur |
 | HAMILCARO Thomas | Mainteneur, Développeur |
 
 ## Gestion Projet
 
-Nous avons créé plusieurs branch dans une optique de développement continue : 
+Nous avons créé plusieurs branches dans une optique de développement continue : 
 - `main`
 - `dev`
 
-Nous avons aussi créé des branch indépendante pour des scripts cruciaux au site : 
+Nous avons aussi créé des branches indépendante pour des scripts cruciaux au site : 
 - `local storage`
 - `Connexion(My-SQL)`
 
 ## Reflexion test
 
-Nous avons aussi créer des branches temporaires dans l’optique de tester des fonctionnalité sans pour autant les appliquer directement sur des branches plus “stable”
+Nous avons aussi créé des branches temporaires dans l’optique de tester des fonctionnalités sans pour autant les appliquer directement sur des branches plus “stable”
 - `TYCinq-patch-2`
 - `feature-thomas`
 
