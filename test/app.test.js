@@ -1,3 +1,6 @@
+// coede de tetst du pannier 
+
+//le code test si le total des élément du panier est juste
 const mocha = require('mocha');
 const expect = require('assert').strict; 
 
